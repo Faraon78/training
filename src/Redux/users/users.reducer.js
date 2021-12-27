@@ -1,24 +1,24 @@
-import PostsActionTypes from './posts.actionTypes';
+import UsersActionTypes from './users.actionTypes';
 
 const initialState ={
-    posts: [],
+    users: [],
     isFetching: false,
     errorMessage: undefined
 }
-export const postsReducer = (state = initialState, action) =>{
+export const usersReducer = (state = initialState, action) =>{
     switch (action.type) {
-        case PostsActionTypes.FETCH_POSTS_START:
+        case UsersActionTypes.FETCH_USERS_START:
           return {
             ...state,
             isFetching: false
           };
-        case PostsActionTypes.FETCH_POSTS_SUCCESS:
+        case UsersActionTypes.FETCH_USERS_SUCCESS:
           return {
             ...state,
             isFetching: true,
-            posts: action.payload
+            users: action.payload
           };
-        case PostsActionTypes.FETCH_POSTS_FAILURE:
+        case UsersActionTypes.FETCH_USERS_FAILURE:
           return {
             ...state,
             isFetching: false,

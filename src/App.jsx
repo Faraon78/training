@@ -1,32 +1,48 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
+import {Route, Routes} from 'react-router-dom';
 
 import './App.css';
-import PostsList from './Components/PostsList/PostsList';
-import PostsActionTypes from './Redux/posts/posts.actionTypes';
+
+import {fetchPostsStart} from './Redux/posts/posts.actions';
+import {fetchUsersStart} from './Redux/users/users.actions';
+import Mainpage from './Pages/Mainpage/mainpage.component';
+import Buttons from './Components/Button/Buttons.component';
+
 
 
 function App() {
   const dispatch = useDispatch(); 
 
   useEffect(() => {
-    dispatch({ type: PostsActionTypes.FETCH_POSTS_START})
-  
-  }, [])  
-  
-  const posts = useSelector(state => state.posts.posts);
-  console.log(posts);
+    dispatch(fetchPostsStart())  
+  }, [dispatch]);
+   
+  useEffect(() => {
+    dispatch(fetchUsersStart())  
+  }, [dispatch])  
+        
   return (
-    <div className="App">
-      <header className="App-header">        
+    <div className="app">
+      <header className="app-header">        
         <h1>MyChat</h1>        
       </header>
-      <main className="Main">
-        <nav className="Main-navigate">Buttons</nav>
-        <PostsList posts ={posts}/>        
+      
+      <main className="main">
+        <nav className="main-navigate">
+          <Buttons>Главная</Buttons> 
+        </nav>
+        <div className="main-content">
+        
+        <Routes>
+          <Route exact path='/' element={<Mainpage/>}/> 
+        </Routes> 
+        
+      </div>         
       </main>
     </div>
   );
 }
 
 export default App;
+
