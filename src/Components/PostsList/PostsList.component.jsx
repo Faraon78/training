@@ -1,10 +1,8 @@
 import React from 'react';
 import { useSelector} from 'react-redux';
-//import { ListItem } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import './PostsList.style.css';
-
-//import Post from '../Post/Post.component';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -24,32 +22,30 @@ function PostsList() {
       return <div>NO POSTS</div>
     }
  
-  return (posts.map(post =>
-  <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }} key = {post.id}>
-  <ListItem alignItems="flex-start" >
-  <ListItemAvatar>
-    <Avatar alt="name"/>
-  </ListItemAvatar>
-  <ListItemText
-    primary={post.title}
-    secondary={
-      <React.Fragment >
-        <Typography
-          sx={{ display: 'inline' }}
-          component="span"
-          variant="body2"
-          color="text.primary"
-        >
-          {post.userId}
-        </Typography>
-        {post.body}
-      </React.Fragment>
-    }
-  />
-</ListItem>
-<Divider variant="inset" component="li" />
+  return (
+  <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
+    {posts.map(post =><Link to={`/post:${post.id}`} key={post.id}><ListItem alignItems="flex-start" className='link' >
+      <ListItemAvatar>        
+        <Avatar alt={users.find(user => user.id === post.userId).name} />
+      </ListItemAvatar>
+      <ListItemText
+        primary={post.title}
+        secondary={<React.Fragment>
+          <Typography
+            sx={{ display: 'inline' }}
+            component="span"
+            variant="body2"
+            color="text.primary"            
+          >
+            {users.find(user => user.id === post.userId).name}
+          </Typography>
+          {post.body}
+        </React.Fragment>} />
+
+    </ListItem><Divider variant="inset" component="li" /></Link>
+)}
 </List>
-   ) );
+   ) ;
 }
 
 export default PostsList;

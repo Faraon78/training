@@ -1,6 +1,6 @@
 import { useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
-import {Route, Routes} from 'react-router-dom';
+import {Route, Routes, NavLink} from 'react-router-dom';
 
 import './App.css';
 
@@ -8,6 +8,7 @@ import {fetchPostsStart} from './Redux/posts/posts.actions';
 import {fetchUsersStart} from './Redux/users/users.actions';
 import Mainpage from './Pages/Mainpage/mainpage.component';
 import Buttons from './Components/Button/Buttons.component';
+import Post from './Components/Post/Post.component'
 
 
 
@@ -30,11 +31,15 @@ function App() {
       
       <main className="main">
         <nav className="main-navigate">
-          <Buttons>Главная</Buttons> 
+          <NavLink to="/">
+            <Buttons className="main-navigate-buttons">MAIN</Buttons> 
+          </NavLink>
+          <Buttons>USERS</Buttons> 
         </nav>
         <div className="main-content">
         
         <Routes>
+          <Route path='/post:id' element={<Post/>}/> 
           <Route exact path='/' element={<Mainpage/>}/> 
         </Routes> 
         

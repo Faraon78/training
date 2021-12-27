@@ -2,10 +2,10 @@ import React from 'react';
 
 import './Post.style.css';
 
-function Post(post) {
+function Post(props) {
   return (
     <div className="Post">
-      Пост
+     Пост
     </div>
   );
 }

@@ -1,7 +1,7 @@
 .app {
   text-align: center;
-  background: url(../public/bg.png);
-  background-size: cover;
+  background: url(../public/bg1.png);
+  background-size:auto;
   min-height: 100vh;
 }
 
@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: blue;
   }
 
 .main{
@@ -22,9 +22,18 @@
 }  
 .main-navigate{
   flex-basis: 250px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: space-around
 }
 .main-content{
   flex-basis: 1200px;
 }
-
+.main-navigate button{
+  width: 150px;
+  display: block;
+  margin-bottom: 20px;
+  
+}
 
