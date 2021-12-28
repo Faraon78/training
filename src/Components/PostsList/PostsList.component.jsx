@@ -11,33 +11,38 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+//import PaginationItem from '@mui/material/PaginationItem';
 
-function PostsList() {
-  const posts = useSelector(state => state.posts.posts);
-    console.log(posts);
-
+function PostsList(props) {
+  const posts = useSelector(state => state.posts.posts);  
   const users = useSelector(state => state.users.users);
-  console.log(users);
+  const pageItemStart = (props.page-1)*7;
+  const pageItemEnd = (props.page*7);  
+  const pagePosts = posts.slice(pageItemStart, pageItemEnd)
+  
     if (!posts.length||!users.length){
       return <div>NO POSTS</div>
     }
- 
+ console.log("Страница " + props.page)
+
   return (
   <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
-    {posts.map(post =><Link to={`/post:${post.id}`} key={post.id}><ListItem alignItems="flex-start" className='link' >
+    {pagePosts.map(post =><Link to={`/post:${post.id}`} key={post.id}><ListItem alignItems="flex-start" className='link' >
       <ListItemAvatar>        
-        <Avatar alt={users.find(user => user.id === post.userId).name} />
+        <Avatar alt="username" variant="square">
+        {users.find(user => user.id === post.userId).username.slice(0,2)}
+        </Avatar>
       </ListItemAvatar>
       <ListItemText
         primary={post.title}
         secondary={<React.Fragment>
-          <Typography
+          <Typography className='postlist-username'
             sx={{ display: 'inline' }}
             component="span"
             variant="body2"
             color="text.primary"            
           >
-            {users.find(user => user.id === post.userId).name}
+            {users.find(user => user.id === post.userId).username}
           </Typography>
           {post.body}
         </React.Fragment>} />

@@ -2,15 +2,14 @@ import { useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
 import {Route, Routes, NavLink} from 'react-router-dom';
 
+
 import './App.css';
 
 import {fetchPostsStart} from './Redux/posts/posts.actions';
 import {fetchUsersStart} from './Redux/users/users.actions';
-import Mainpage from './Pages/Mainpage/mainpage.component';
+import Mainpage from './Pages/Mainpage/Mainpage.component';
 import Buttons from './Components/Button/Buttons.component';
-import Post from './Components/Post/Post.component'
-
-
+import Postpage from './Pages/Postpage/Postpage.component';
 
 function App() {
   const dispatch = useDispatch(); 
@@ -22,6 +21,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchUsersStart())  
   }, [dispatch])  
+  
         
   return (
     <div className="app">
@@ -39,7 +39,8 @@ function App() {
         <div className="main-content">
         
         <Routes>
-          <Route path='/post:id' element={<Post/>}/> 
+          <Route path='/post:id' element={<Postpage/>}/>
+          <Route path='/page' element={<Mainpage />}/>
           <Route exact path='/' element={<Mainpage/>}/> 
         </Routes> 
         
