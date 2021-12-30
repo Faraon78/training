@@ -12,7 +12,7 @@ export function* fetchUsersAsync(){
       }
 }
 
-export function* fetchUsersAsyncStart(){
+export function* usersWatcher(){
     yield takeEvery(
         UsersActionTypes.FETCH_USERS_START, 
         fetchUsersAsync)

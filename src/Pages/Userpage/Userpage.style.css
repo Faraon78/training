@@ -1,7 +1,4 @@
-.PostsList{
-    flex-basis: 800px;
-  }
-  a{
+a{
     text-decoration: none;    
   }
   a:visited{
@@ -10,4 +7,3 @@
   .link:hover{
     background-color: lightsteelblue;
   }
- 

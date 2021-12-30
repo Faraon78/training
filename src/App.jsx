@@ -7,9 +7,11 @@ import './App.css';
 
 import {fetchPostsStart} from './Redux/posts/posts.actions';
 import {fetchUsersStart} from './Redux/users/users.actions';
+
 import Mainpage from './Pages/Mainpage/Mainpage.component';
 import Buttons from './Components/Button/Buttons.component';
 import Postpage from './Pages/Postpage/Postpage.component';
+import Userpage from './Pages/Userpage/Userpage.component';
 
 function App() {
   const dispatch = useDispatch(); 
@@ -17,10 +19,10 @@ function App() {
   useEffect(() => {
     dispatch(fetchPostsStart())  
   }, [dispatch]);
-   
   useEffect(() => {
     dispatch(fetchUsersStart())  
   }, [dispatch])  
+  
   
         
   return (
@@ -34,13 +36,15 @@ function App() {
           <NavLink to="/">
             <Buttons className="main-navigate-buttons">MAIN</Buttons> 
           </NavLink>
-          <Buttons>USERS</Buttons> 
+          <NavLink to="/users">
+            <Buttons className="main-navigate-buttons">USERS</Buttons> 
+          </NavLink>
         </nav>
         <div className="main-content">
         
         <Routes>
           <Route path='/post:id' element={<Postpage/>}/>
-          <Route path='/page' element={<Mainpage />}/>
+          <Route path='/users' element={<Userpage />}/>
           <Route exact path='/' element={<Mainpage/>}/> 
         </Routes> 
         

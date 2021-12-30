@@ -13,7 +13,7 @@ export function* fetchPostsAsync(){
       }
 }
 
-export function* fetchPostsAsyncStart(){
+export function* postsWatcher(){
     yield takeEvery(
         PostsActionTypes.FETCH_POSTS_START, 
         fetchPostsAsync)
