@@ -2,10 +2,10 @@ import {takeEvery, put, call} from 'redux-saga/effects';
 import CommentsActionTypes from './comments.actionTypes';
 import {fetchCommentsSuccess, fetchCommentsFailure} from './comments.actions';
 
-export function* fetchCommentsAsync(){
+export function* fetchCommentsAsync(action){
     try {        
            
-        let data = yield call(fetch,'https://jsonplaceholder.typicode.com/posts/1/comments');
+        let data = yield call(fetch,`https://jsonplaceholder.typicode.com/posts/${action.payload.id}/comments`);
          data = yield data.json();
         yield put(fetchCommentsSuccess(data));
       } catch (error) {

@@ -1,6 +1,7 @@
 import { useDispatch} from 'react-redux';
 import React, {useEffect} from 'react';
 import {Route, Routes, NavLink} from 'react-router-dom';
+import Typography from '@mui/material/Typography';
 
 
 import './App.css';
@@ -11,6 +12,7 @@ import {fetchUsersStart} from './Redux/users/users.actions';
 import Mainpage from './Pages/Mainpage/Mainpage.component';
 import Buttons from './Components/Button/Buttons.component';
 import Postpage from './Pages/Postpage/Postpage.component';
+import Userlistpage from './Pages/Userlistpage/Userlistpage.component';
 import Userpage from './Pages/Userpage/Userpage.component';
 
 function App() {
@@ -28,7 +30,7 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">        
-        <h1>MyChat</h1>        
+        <Typography variant="h2" component="div">MyChat</Typography>        
       </header>
       
       <main className="main">
@@ -43,8 +45,9 @@ function App() {
         <div className="main-content">
         
         <Routes>
-          <Route path='/post:id' element={<Postpage/>}/>
-          <Route path='/users' element={<Userpage />}/>
+          <Route path='/post/:id' element={<Postpage/>}/>
+          <Route path='/users/:id' element={<Userpage />}/>
+          <Route path='/users' element={<Userlistpage />}/>
           <Route exact path='/' element={<Mainpage/>}/> 
         </Routes> 
         

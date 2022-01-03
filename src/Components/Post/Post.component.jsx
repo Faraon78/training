@@ -3,10 +3,13 @@ import { useDispatch } from 'react-redux';
 //import { useParams } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import {fetchCommentsStart} from '../../Redux/comments/comments.actions';
-//import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Divider from '@mui/material/Divider';
+import ListItemText from '@mui/material/ListItemText';
 
 
 import './Post.style.css';
@@ -14,8 +17,8 @@ import './Post.style.css';
 function Post(props) {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(fetchCommentsStart())  
-  }, [dispatch]);
+    dispatch(fetchCommentsStart(props.id))  
+  }, [dispatch, props.id]);
   
   const posts = useSelector(state => state.posts.posts);
   // eslint-disable-next-line eqeqeq
@@ -24,17 +27,15 @@ function Post(props) {
   // eslint-disable-next-line eqeqeq
   const user = users.find(user => user.id == post.userId);
   const comments = useSelector(state => state.comments.comments)
-
-  console.log(post);
-  console.log(user);
-  console.log(comments);
+  
   return (
-    <Card sx={{ minWidth: 275 }} className="card-note">
+    <div>
+    <Card sx={{ minWidth: 275, maxWidth: 1000 }} className="card-note">
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Author
         </Typography>
-        <Typography variant="h5" component="div">
+        <Typography variant="h5" component="span">
           {user.username}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -45,6 +46,27 @@ function Post(props) {
         </Typography>
       </CardContent>
     </Card>
+    <Typography variant="h5" gutterBottom component="div" className='text-header' >
+        Comments
+    </Typography>
+    <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
+    {comments.map(comment => <li key = {comment.id}>
+    <ListItem alignItems="flex-start" >
+      <ListItemText
+        primary={comment.name}
+        secondary={<React.Fragment>
+          {comment.body}
+        </React.Fragment>} />
+        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom className='email'>
+        {comment.email}
+    </Typography>    
+    </ListItem>
+    
+    <Divider  component="li" />
+    </li>
+)}
+    </List>
+    </div>
   );
 }
 

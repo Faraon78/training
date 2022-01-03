@@ -10,7 +10,7 @@ function Mainpage({url}) {
   
   const [page, setPage] = React.useState(1);
   const posts = useSelector(state => state.posts.posts);
-  const count = Math.ceil(posts.length / 7)
+  const count = Math.ceil(posts.length / 8)
   const handleChange = (event, value) => {
     console.log(value);
     setPage(value);
