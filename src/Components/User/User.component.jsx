@@ -43,3 +43,13 @@ function User(props) {
 }
 
 export default User;
+
+/*export default function User() {
+  return (
+    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
+      <Routes>
+        <Route path="*" element={<Content />} />
+      </Routes>
+    </MemoryRouter>
+  );
+}*/

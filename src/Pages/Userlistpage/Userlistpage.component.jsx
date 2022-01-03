@@ -8,7 +8,9 @@ import Userlist from '../../Components/Userlist/Userlist.component';
 function Userlistpage() {
     
   return (
-    <Userlist/>
+   
+      <Userlist/>
+    
   );
 }
  

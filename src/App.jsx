@@ -45,6 +45,7 @@ function App() {
         <div className="main-content">
         
         <Routes>
+        <Route path='/:page' element={<Mainpage/>}/>
           <Route path='/post/:id' element={<Postpage/>}/>
           <Route path='/users/:id' element={<Userpage />}/>
           <Route path='/users' element={<Userlistpage />}/>

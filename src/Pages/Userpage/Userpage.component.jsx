@@ -7,7 +7,8 @@ function Userpage() {
     
   let {id} = useParams();
   console.log(id);
-  return(  
+  return( 
+     
        <User id={id}/>
    )
 }
