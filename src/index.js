@@ -4,9 +4,10 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import {createBrowserHistory} from 'history';
 
-import './index.css';
 import App from './App';
-import store from './Redux/store/store'
+import store from './Redux/store/store';
+
+import './index.css';
 
 const history = createBrowserHistory()
 ReactDOM.render(

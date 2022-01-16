@@ -1,17 +1,13 @@
 import React  from 'react';
 
+import UserList from '../../Components/UserList/UserList.component';
 
-import './Userlistpage.style.css';
+import './UserListPage.style.css';
 
-import Userlist from '../../Components/Userlist/Userlist.component';
-
-function Userlistpage() {
-    
-  return (
-   
-      <Userlist/>
-    
+function UserListPage() {    
+  return (   
+      <UserList/>    
   );
 }
  
-export default Userlistpage;
+export default UserListPage;

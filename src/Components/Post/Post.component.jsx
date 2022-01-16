@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
-import { useDispatch } from 'react-redux';
-//import { useParams } from 'react-router-dom';
-import { useSelector} from 'react-redux';
-import {fetchCommentsStart} from '../../Redux/comments/comments.actions';
+import { useDispatch, useSelector } from 'react-redux';
+
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -11,6 +9,7 @@ import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
 
+import {fetchCommentsStart} from '../../Redux/comments/comments.actions';
 
 import './Post.style.css';
 

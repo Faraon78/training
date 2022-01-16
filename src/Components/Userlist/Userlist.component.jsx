@@ -2,9 +2,6 @@ import React, {useEffect}  from 'react';
 import {fetchUsersStart} from '../../Redux/users/users.actions';
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
-//import { useParams } from 'react-router-dom';
-
-import './Userlist.style.css';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -14,7 +11,9 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 
-function Userlist() {
+import './UserList.style.css';
+
+function UserList() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchUsersStart())  
@@ -56,4 +55,4 @@ function Userlist() {
   );
 }
  
-export default Userlist;
+export default UserList;

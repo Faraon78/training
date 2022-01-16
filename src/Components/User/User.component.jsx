@@ -7,8 +7,7 @@ import Typography from '@mui/material/Typography';
 
 function User(props) {
     const users = useSelector(state => state.users.users);
-    // eslint-disable-next-line eqeqeq
-    const currentUser = users.find(user => user.id == props.id);
+    const currentUser = users.find(user => user.id === props.id);
     console.log(currentUser);
     return (
         <Card sx={{ minWidth: 275, maxWidth: 1000 }} className="card-note">
@@ -44,12 +43,3 @@ function User(props) {
 
 export default User;
 
-/*export default function User() {
-  return (
-    <MemoryRouter initialEntries={['/inbox']} initialIndex={0}>
-      <Routes>
-        <Route path="*" element={<Content />} />
-      </Routes>
-    </MemoryRouter>
-  );
-}*/
