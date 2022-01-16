@@ -1,16 +1,15 @@
 import React from 'react';
-
 import { useParams } from 'react-router-dom';
+
 import User from '../../Components/User/User.component';
 
-function Userpage() {
+function UserPage() {
     
   let {id} = useParams();
   console.log(id);
-  return( 
-     
+  return(
        <User id={id}/>
    )
 }
 
-export default Userpage;
+export default UserPage;

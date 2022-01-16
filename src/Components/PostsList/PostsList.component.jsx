@@ -2,12 +2,12 @@ import React from 'react';
 import { useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import './PostsList.style.css';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Divider from '@mui/material/Divider';
 import ListItemText from '@mui/material/ListItemText';
+
+import './PostsList.style.css';
 
 function PostsList(props) {
   const posts = useSelector(state => state.posts.posts);  

@@ -1,31 +1,21 @@
-import { useDispatch} from 'react-redux';
-import React, {useEffect} from 'react';
+import React from 'react';
+
 import {Route, Routes, NavLink} from 'react-router-dom';
+
+import MainPage from './Pages/MainPage/MainPage.component';
+import Buttons from './Components/Button/Buttons.component';
+import PostPage from './Pages/PostPage/PostPage.component';
+import UserListPage from './Pages/UserListPage/UserListPage.component';
+import UserPage from './Pages/UserPage/UserPage.component';
+import AuthPage from './Pages/AuthPage/AuthPage.component';
+
 import Typography from '@mui/material/Typography';
+
 
 
 import './App.css';
 
-import {fetchPostsStart} from './Redux/posts/posts.actions';
-import {fetchUsersStart} from './Redux/users/users.actions';
-
-import Mainpage from './Pages/Mainpage/Mainpage.component';
-import Buttons from './Components/Button/Buttons.component';
-import Postpage from './Pages/Postpage/Postpage.component';
-import Userlistpage from './Pages/Userlistpage/Userlistpage.component';
-import Userpage from './Pages/Userpage/Userpage.component';
-
-function App() {
-  const dispatch = useDispatch(); 
-
-  useEffect(() => {
-    dispatch(fetchPostsStart())  
-  }, [dispatch]);
-  useEffect(() => {
-    dispatch(fetchUsersStart())  
-  }, [dispatch])  
-  
-  
+function App() { 
         
   return (
     <div className="app">
@@ -45,11 +35,11 @@ function App() {
         <div className="main-content">
         
         <Routes>
-        <Route path='/:page' element={<Mainpage/>}/>
-          <Route path='/post/:id' element={<Postpage/>}/>
-          <Route path='/users/:id' element={<Userpage />}/>
-          <Route path='/users' element={<Userlistpage />}/>
-          <Route exact path='/' element={<Mainpage/>}/> 
+          <Route path='/:page' element={<MainPage/>}/>
+          <Route path='/post/:id' element={<PostPage/>}/>
+          <Route path='/users/:id' element={<UserPage />}/>
+          <Route path='/users' element={<UserListPage />}/>
+          <Route exact path='/' element={<AuthPage/>}/> 
         </Routes> 
         
       </div>         

@@ -1,25 +1,36 @@
-import React from 'react';
-import { useSelector} from 'react-redux';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch} from 'react-redux';
 import {useParams, Link} from 'react-router-dom';
 
 import PostsList from '../../Components/PostsList/PostsList.component';
 
 
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
 
-function Mainpage() {   
+import {fetchPostsStart} from '../../Redux/posts/posts.actions';
+import {fetchUsersStart} from '../../Redux/users/users.actions';
+
+import './MainPage.style.css';
+
+function MainPage() {  
+  const dispatch = useDispatch(); 
+
+  useEffect(() => {
+    dispatch(fetchPostsStart())  
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchUsersStart())  
+  }, [dispatch]) 
  
   let {page} = useParams();  
   page= page || 1;
   console.log(page);  
   
   const posts = useSelector(state => state.posts.posts);
-  const count = Math.ceil(posts.length / 8)
-  
+  const count = Math.ceil(posts.length / 8);  
    
-    return(
-      
+    return(      
       <div>        
           <Pagination count={count}  color="primary" className="pagescount" 
           renderItem={(item) => (
@@ -30,11 +41,10 @@ function Mainpage() {
             />
             )}/>          
        
-          <PostsList page ={page}/>
-        
+          <PostsList page ={page}/>        
     </div>
   );     
 }
 
-export default Mainpage;
+export default MainPage;
  
