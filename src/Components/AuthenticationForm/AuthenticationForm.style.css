@@ -1,5 +1,6 @@
 .field{
     margin-top: 20px;
+    margin-bottom: 50px;
 };
 
 div.auth-header{
@@ -11,14 +12,19 @@ div.auth-header{
     justify-content: center;
 }
 
-button.css-jh47zj-MuiButtonBase-root-MuiButton-root{
+.btn button{
   width: 120px;  
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   margin-right: 10px;
   margin-left: 10px; 
+  margin-top: 20px;
   
     
 }
 .btn button:last-child{
     background-color: rgb(26, 160, 26);
+}
+.alert {
+    position: absolute;
+    min-width: 368px;
 }
