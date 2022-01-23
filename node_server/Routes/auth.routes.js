@@ -69,7 +69,7 @@ const authorization = (req, res, next) => {
       return res.sendStatus(403);
     }
     try {
-      const data = jwt.verify(token, "YOUR_SECRET_KEY");
+      const data = jwt.verify(token, "Olga Shchahliak in ITechArt");
       req.userId = data.id;
       req.userRole = data.role;
       return next();
