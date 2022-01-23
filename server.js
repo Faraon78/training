@@ -1,23 +1,31 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
+const cors = require('cors');
+
 const app = express();
-const router = express.Router();
 
-router.post('/register', async (req, res) =>{
-  try{
-    const{email, password} = req.body;
-    console.log(email, password)
-  } catch(e){
-      res.status(500).json({message: 'Что-то пошло не так, попробуйте снова'})
-  }
+app.use(cors());
+app.use(express.json());
+app.use(cookieParser());
 
-})
-app.use(function(request, response, next){     
-    console.log("Middleware 1");
-    next();
+
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
+  next();
 });
-app.use(function(request, response, next){
-     
-    console.log("Middleware 2");
-    response.send("Middleware 2");
+app.use('/auth', require('./node_server/Routes/auth.routes'));
+
+
+
+app.get("/", function(request, response){
+   
+  console.log("Route /");
+  response.send("Hello");
 });
-app.listen(3000);
+
+
+app.listen(5000, function(){
+  console.log('Сервер запущен на порту 5000')
+});

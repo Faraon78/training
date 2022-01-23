@@ -8,10 +8,12 @@
 .app-header {
   min-height: 80px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  /*font-size: calc(5px + 2vmin);*/
+  justify-content: space-between;
+  padding-right: 50px;
+  padding-left: 50px;
+  
   color: black;
   font-weight: bold;
   }
