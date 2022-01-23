@@ -20,11 +20,11 @@ function Post(props) {
   }, [dispatch, props.id]);
   
   const posts = useSelector(state => state.posts.posts);
-  // eslint-disable-next-line eqeqeq
-  const post = posts.find(post => post.id == props.id)
+ 
+  const post = posts.find(post => Number(post.id) === Number(props.id))
   const users = useSelector(state => state.users.users);
-  // eslint-disable-next-line eqeqeq
-  const user = users.find(user => user.id == post.userId);
+  
+  const user = users.find(user => Number(user.id) === Number(post.userId));
   const comments = useSelector(state => state.comments.comments)
   
   return (
@@ -49,7 +49,7 @@ function Post(props) {
         Comments
     </Typography>
     <List sx={{ width: '100%', maxWidth: 1000, bgcolor: 'background.paper' }}>
-    {comments.map(comment => <li key = {comment.id}>
+    {comments.map(comment => <div key = {comment.id}>
     <ListItem alignItems="flex-start" >
       <ListItemText
         primary={comment.name}
@@ -62,7 +62,7 @@ function Post(props) {
     </ListItem>
     
     <Divider  component="li" />
-    </li>
+    </div>
 )}
     </List>
     </div>

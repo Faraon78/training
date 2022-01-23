@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { useHttp } from '../../Hooks/http.hook';
 
 import Box from '@mui/material/Box';
@@ -9,18 +9,33 @@ import Alert from '@mui/material/Alert';
 import './AuthenticationForm.style.css';
 
 function AuthenticationForm() {
-    const {loading, request}= useHttp();
+    const {loading, error, request}= useHttp();
     const [email, setEmail]= useState("")
     const [password, setPassword]= useState('')
     const [errormail, setErrormail] = useState(false)
     const [errorpass, setErrorpass] = useState(false)
-   const changeEmail = (event) =>{
+
+    useEffect(()=>{
+
+    },[error])
+        
+    const changeEmail = (event) =>{
     setEmail(event.target.value)
    }
    const changePassword = (event) =>{
     setPassword(event.target.value)
     }
+
+    const registration =() =>{
+        console.log('Запустили registration');
+        const valid = validation();
+        
+        if (valid){
+            registerHandler()
+        }
+    }
     const validation =()=>{
+        console.log("Запустили validation")
         let testEmail=/\S+@\S+/.test(email);
         if (!testEmail){
             setErrormail(true)            
@@ -35,21 +50,44 @@ function AuthenticationForm() {
         if(testEmail && (password.length>=6)){
             setErrormail(false)
             setErrorpass(false)
-            registerHandler()
-        }
+            console.log ("Validation = true")
+                return true
+            }
+            
+         else {
+            console.log ("Validation = false")
+                return false
+            }           
     }
 
     const registerHandler = async ()=>{
         try{
-            let userData = JSON.stringify({email, password})
+            console.log('Запустили registerHandler')
+            
             const data = await request (
-                ' http://localhost:5000/auth/register', 
+                'http://localhost:5000/auth/register', 
                 'POST', 
-                userData, 
-              {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            });
+                {email, password} 
+                );
+            console.log('DATA', data)
+        }catch(e){
+
+        }
+    }
+    const logination =() =>{
+        console.log('Запустили logination')
+        const valid = validation();
+        if (valid){
+            loginHandler()
+        }
+    }
+    const loginHandler = async ()=>{
+        try{
+            const data = await request (
+                ' http://localhost:5000/auth/login', 
+                'POST', 
+                {email, password} 
+                );
             console.log('DATA', data)
         }catch(e){
 
@@ -104,12 +142,12 @@ function AuthenticationForm() {
             <div className='btn'>   
                 <Button variant="contained" className="log-btn"
                 disabled={loading}
-                onClick={validation}
+                onClick={logination}
                  >Log in
                 </Button>  
                 
                 <Button variant="contained" className='reg'
-                onClick={validation} 
+                onClick={registration} 
                 disabled={loading}
                 > Register
                 </Button>
@@ -122,4 +160,3 @@ function AuthenticationForm() {
 }
 
 export default AuthenticationForm;
-//, 

@@ -6,8 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
 function User(props) {
+    console.log(props.id)
     const users = useSelector(state => state.users.users);
-    const currentUser = users.find(user => user.id === props.id);
+    const currentUser = users.find(user => Number(user.id) === Number(props.id));
     console.log(currentUser);
     return (
         <Card sx={{ minWidth: 275, maxWidth: 1000 }} className="card-note">
