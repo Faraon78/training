@@ -1,9 +1,10 @@
 const {Router} = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-//const cookieParser = require("cookie-parser");
+
 const router = Router();
 const pool = require('../DataBase/pool');
+const jwtsecret = process.env.JWT_SECRET;
 
 router.post('/register', async (req, res) =>{
     try{
@@ -44,11 +45,11 @@ router.post('/login', async (req, res) =>{
         
         const token = jwt.sign(
             {userId:user.rows[0].id},
-            "Olga Shchahliak in ITechArt",
+            jwtsecret,
             {expiresIn:'1h'}
         );
         console.log("token: " + token)
-        
+        console.log('Cookies: ', req.cookies)
         return res
         .cookie("access_token", token, {
         httpOnly: true,
@@ -56,7 +57,7 @@ router.post('/login', async (req, res) =>{
         })
         .status(200)
         .json({ message: "Logged in successfully"});
-        //res.json({token, userId:user.rows[0].id})
+        
 
     } catch(e){
         res.status(500).json({message:'Что-то пошло не так, попробуйте еще раз'})
@@ -69,9 +70,10 @@ const authorization = (req, res, next) => {
       return res.sendStatus(403);
     }
     try {
-      const data = jwt.verify(token, "Olga Shchahliak in ITechArt");
+      const data = jwt.verify(token, jwtsecret);
       req.userId = data.id;
-      req.userRole = data.role;
+      req.email = data.email;
+      console.log("работает authorization");
       return next();
     } catch {
       return res.sendStatus(403);

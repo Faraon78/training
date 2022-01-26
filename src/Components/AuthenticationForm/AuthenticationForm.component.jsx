@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { useHttp } from '../../Hooks/http.hook';
+import { useMessage } from '../../Hooks/message.hook';
 
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -8,16 +9,19 @@ import Alert from '@mui/material/Alert';
 
 import './AuthenticationForm.style.css';
 
+
 function AuthenticationForm() {
-    const {loading, error, request}= useHttp();
-    const [email, setEmail]= useState("")
-    const [password, setPassword]= useState('')
-    const [errormail, setErrormail] = useState(false)
-    const [errorpass, setErrorpass] = useState(false)
+    const message = useMessage();
+    const {loading, error, request, clearError}= useHttp();
+    const [email, setEmail]= useState("");
+    const [password, setPassword]= useState("");
+    const [errormail, setErrormail] = useState(false);
+    const [errorpass, setErrorpass] = useState(false);
 
     useEffect(()=>{
-
-    },[error])
+        message (error);
+        //clearError()
+    },[error, message]);
         
     const changeEmail = (event) =>{
     setEmail(event.target.value)
@@ -35,7 +39,7 @@ function AuthenticationForm() {
         }
     }
     const validation =()=>{
-        console.log("Запустили validation")
+        console.log("Запустили validation");
         let testEmail=/\S+@\S+/.test(email);
         if (!testEmail){
             setErrormail(true)            

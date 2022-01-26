@@ -26,6 +26,6 @@ app.get("/", function(request, response){
 });
 
 
-app.listen(5000, function(){
+app.listen(process.env.PORT, function(){
   console.log('Сервер запущен на порту 5000')
 });
