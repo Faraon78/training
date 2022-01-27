@@ -1,6 +1,8 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const cors = require('cors');
+const routeRegister = require('./node_server/Routes/register');
+//const reflect_metadata=require("reflect-metadata")
 
 const app = express();
 
@@ -16,7 +18,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use('/auth', require('./node_server/Routes/auth.routes'));
-
+app.use(routeRegister);
 
 
 app.get("/", function(request, response){
@@ -26,6 +28,6 @@ app.get("/", function(request, response){
 });
 
 
-app.listen(process.env.PORT, function(){
+app.listen(process.env.SERVER_PORT, function(){
   console.log('Сервер запущен на порту 5000')
 });

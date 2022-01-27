@@ -6,7 +6,8 @@ const router = Router();
 const pool = require('../DataBase/pool');
 const jwtsecret = process.env.JWT_SECRET;
 
-router.post('/register', async (req, res) =>{
+
+/*router.post('/register', async (req, res) =>{
     try{
         const {email, password} = req.body
         const candidate = await pool.query('SELECT * FROM users WHERE email = $1', [email])
@@ -24,7 +25,7 @@ router.post('/register', async (req, res) =>{
     } catch(e){
         res.status(500).json({message:'Что-то пошло не так, попробуйте еще раз'})
     }
-});
+});*/
 
 router.post('/login', async (req, res) =>{
     try{
